@@ -17,13 +17,8 @@ public class Main {
         LautaDao lautaDao = new LautaDao(database);
         LankaDao lankaDao = new LankaDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
-
+   
         get("/", (req, res) -> {
-            res.redirect("/laudat");
-            return "ok";
-        });
-        
-        get("/laudat", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Lauta> laudat = lautaDao.findAll();
             map.put("laudat", laudat);
@@ -31,11 +26,12 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
         
-        get("/laudat/:nimi", (req, res) -> {
+        get("/:nimi", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Lanka> langat = lankaDao.findByLauta(req.params(":nimi"));
             map.put("langat", langat);
-            map.put("lauta", req.params(":nimi"));
+            Lauta lauta = lautaDao.findOne(req.params(":nimi"));
+            map.put("lauta", lauta);
             return new ModelAndView(map, "lauta");
         }, new ThymeleafTemplateEngine());
 

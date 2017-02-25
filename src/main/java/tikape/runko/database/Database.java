@@ -66,7 +66,7 @@ public class Database {
 //        Model for db tables/inserts
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Loli', 'Goemon saigoo :D');");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('3DPD', 'Kek');");
-
+        lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (1, 'Best Girl in 2017 Spring', 'Loli');");
         return lista;
     }
 }

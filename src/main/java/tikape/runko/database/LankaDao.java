@@ -56,10 +56,6 @@ public class LankaDao implements Dao<Lanka, Integer> {
         stmt.setObject(1, lauta_nimi);
 
         ResultSet rs = stmt.executeQuery();
-        boolean hasOne = rs.next();
-        if (!hasOne) {
-            return null;
-        }
 
         List<Lanka> langat = new ArrayList<>();
         while (rs.next()) {
