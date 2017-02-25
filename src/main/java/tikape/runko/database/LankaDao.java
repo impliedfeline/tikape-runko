@@ -11,22 +11,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import tikape.runko.domain.Lanka;
 
 /**
  *
  * @author juicyp
  */
-public class LankaDao {
-    
+public class LankaDao implements Dao<Lanka, Integer> {
+
     private Database database;
 
-    public LautaDao(Database database) {
+    public LankaDao(Database database) {
         this.database = database;
     }
 
-    public Lauta haeLauta(Integer key) throws SQLException {
+    @Override
+    public Lanka findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lanka WHERE id = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -34,11 +36,12 @@ public class LankaDao {
         if (!hasOne) {
             return null;
         }
-        
-        Integer id = rs.getInt("id");
-        String motd = rs.getString("motd");
 
-        Lauta l = new Lauta(nimi, motd);
+        Integer id = rs.getInt("id");
+        String otsikko = rs.getString("otsikko");
+        String lauta = rs.getString("lauta");
+
+        Lanka l = new Lanka(id, otsikko, lauta);
         rs.close();
         stmt.close();
         connection.close();
@@ -46,23 +49,58 @@ public class LankaDao {
         return l;
     }
 
-    public List<Lauta> haeLaudat() throws SQLException {
+    public List<Lanka> findAll(String lauta_nimi) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lanka WHERE lauta = ?");
+        stmt.setObject(1, lauta_nimi);
 
         ResultSet rs = stmt.executeQuery();
-        List<Lauta> laudat = new ArrayList<>();
-        while (rs.next()) {
-            String nimi = rs.getString("nimi");
-            String motd = rs.getString("motd");
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
 
-            laudat.add(new Lauta(nimi, motd));
+        List<Lanka> langat = new ArrayList<>();
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            String otsikko = rs.getString("otsikko");
+            String lauta = rs.getString("lauta");
+
+            langat.add(new Lanka(id, otsikko, lauta));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return laudat;
+        return langat;
     }
+
+    @Override
+    public List<Lanka> findAll() throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lanka");
+
+        ResultSet rs = stmt.executeQuery();
+        List<Lanka> langat = new ArrayList<>();
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            String otsikko = rs.getString("otsikko");
+            String lauta = rs.getString("lauta");
+
+            langat.add(new Lanka(id, otsikko, lauta));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return langat;
+    }
+
+    @Override
+    public void delete(Integer key) throws SQLException {
+        //Not here
+    }
+
 }
