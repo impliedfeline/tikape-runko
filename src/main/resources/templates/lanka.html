@@ -1,0 +1,19 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>KMS-Public</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1><span th:text="${lanka.otsikko}">otsikko</span></h1>
+        <h2>Langat</h2>
+        <ul>
+            <li th:each="viesti : ${viestit}">
+                <a th:text="${viesti.nimimerkki}">Lauta</a>
+            </li>
+        </ul>
+
+    </body>
+</html>
