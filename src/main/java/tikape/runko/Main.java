@@ -34,7 +34,14 @@ public class Main {
             map.put("lauta", lauta);
             return new ModelAndView(map, "lauta");
         }, new ThymeleafTemplateEngine());
+   
+        get("/langat/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            List<Viesti> viestit = viestiDao.findByLanka(Integer.parseInt(req.params(":id")));
+            map.put("viestit", viestit);
 
+            return new ModelAndView(map, "lanka");
+        }, new ThymeleafTemplateEngine());
 
     }
 }

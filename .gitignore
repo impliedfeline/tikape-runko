@@ -1,3 +1,8 @@
 */target/**
+<<<<<<< HEAD
 */target/*
 target
+=======
+/target/
+target
+>>>>>>> refs/heads/Lanka_html

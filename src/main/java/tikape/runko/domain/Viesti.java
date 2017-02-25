@@ -5,7 +5,7 @@
  */
 package tikape.runko.domain;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,11 +16,11 @@ public class Viesti {
     private Integer id;
     private String sisalto;
     private String nimimerkki;
-    private Time aika;
+    private String aika;
     private Integer lanka_id;
     private Integer vastaus;
 
-    public Viesti(Integer id, String sisalto, String nimimerkki, Time aika, Integer lanka_id, Integer vastaus) {
+    public Viesti(Integer id, String sisalto, String nimimerkki, String aika, Integer lanka_id, Integer vastaus) {
         this.id = id;
         this.sisalto = sisalto;
         this.nimimerkki = nimimerkki;
@@ -53,11 +53,11 @@ public class Viesti {
         this.nimimerkki = nimimerkki;
     }
 
-    public Time getAika() {
+    public String getAika() {
         return aika;
     }
 
-    public void setAika(Time aika) {
+    public void setAika(String aika) {
         this.aika = aika;
     }
 
