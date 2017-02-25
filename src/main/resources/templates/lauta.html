@@ -12,7 +12,7 @@
         <h2>Langat</h2>
         <ul>
             <li th:each="lanka : ${langat}">
-                <a th:href="@{~/{id}(id=${lanka.id})}" 
+                <a th:href="@{~/langat/{id}(id=${lanka.id})}" 
                    th:text="${lanka.otsikko}">Lauta</a>
 
             </li>

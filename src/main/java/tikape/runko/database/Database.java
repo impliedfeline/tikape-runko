@@ -56,17 +56,18 @@ public class Database {
                 + "id integer PRIMARY KEY,\n"
                 + "sisalto varchar(1000) NOT NULL,\n"
                 + "nimimerkki varchar(20),\n"
-                + "aika timestamp,\n"
+                + "aika varchar(30) NOT NULL,\n"
                 + "lanka_id integer NOT NULL,\n"
                 + "vastaus_id integer,\n"
                 + "FOREIGN KEY(lanka_id) REFERENCES Lanka(id),\n"
                 + "FOREIGN KEY(vastaus_id) REFERENCES Viesti(id)\n"
                 + ");");
-                
+
 //        Model for db tables/inserts
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Loli', 'Goemon saigoo :D');");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('3DPD', 'Kek');");
         lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (1, 'Best Girl in 2017 Spring', 'Loli');");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) VALUES (1, 'Best Girl in 2017 Spring', 'Loli Next Door', '2010-05-28T15:36:56.200', 1, null);");
         return lista;
     }
 }
