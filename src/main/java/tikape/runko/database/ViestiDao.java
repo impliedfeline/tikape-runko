@@ -18,7 +18,7 @@ import tikape.runko.domain.Viesti;
  *
  * @author Wagahai
  */
-public class ViestiDao {
+public class ViestiDao implements Dao<Viesti, Integer> {
 
     private Database database;
 
@@ -26,10 +26,11 @@ public class ViestiDao {
         this.database = database;
     }
 
-    public Viesti haeViesti(Integer viesti_id) throws SQLException {
+    @Override
+    public Viesti findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta WHERE nimi = ?");
-        stmt.setObject(1, viesti_id);
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE nimi = ?");
+        stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();
@@ -50,24 +51,44 @@ public class ViestiDao {
 
         return v;
     }
-
-    public List<Lauta> haeLaudat() throws SQLException {
+    
+    public List<Viesti> findAll(String lanka_nimi) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE lanka_id = ?");
+        stmt.setObject(1, lanka_nimi);
 
         ResultSet rs = stmt.executeQuery();
-        List<Lauta> laudat = new ArrayList<>();
-        while (rs.next()) {
-            String nimi = rs.getString("nimi");
-            String motd = rs.getString("motd");
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
 
-            laudat.add(new Lauta(nimi, motd));
+        List<Viesti> viestit = new ArrayList<>();
+        while (rs.next()) {
+        Integer id = rs.getInt("id");
+            String sisalto = rs.getString("sisalto");
+            String nimimerkki = rs.getString("nimimerkki");
+            Time aika = rs.getTime("aika");
+            Integer lanka_id = rs.getInt("lanka_id");
+            Integer vastaus = rs.getInt("vastaus");
+
+            viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return laudat;
+        return viestit;
+    }
+
+    @Override
+    public List<Viesti> findAll() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Integer key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
