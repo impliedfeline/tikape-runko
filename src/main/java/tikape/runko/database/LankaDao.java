@@ -40,6 +40,7 @@ public class LankaDao implements Dao<Lanka, Integer> {
         Integer id = rs.getInt("id");
         String otsikko = rs.getString("otsikko");
         String lauta = rs.getString("lauta");
+        
 
         Lanka l = new Lanka(id, otsikko, lauta);
         rs.close();

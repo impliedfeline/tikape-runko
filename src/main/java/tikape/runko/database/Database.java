@@ -61,7 +61,7 @@ public class Database {
                 + "vastaus_id integer,\n"
                 + "FOREIGN KEY(lanka_id) REFERENCES Lanka(id),\n"
                 + "FOREIGN KEY(vastaus_id) REFERENCES Viesti(id)\n"
-                + ");")
+                + ");");
                 
 //        Model for db tables/inserts
 //        lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
