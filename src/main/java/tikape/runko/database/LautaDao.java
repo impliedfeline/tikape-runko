@@ -73,4 +73,16 @@ public class LautaDao implements Dao<Lauta, String> {
         throw new UnsupportedOperationException("Ei tarvita."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void add(Lauta obj) throws SQLException {
+        String nimi = obj.getNimi();
+        String motd = obj.getMotd();
+        
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Lauta " +
+                            "(nimi, motd) " +
+                            "VALUES (" + nimi + ", " + motd + ");");
+        stmt.execute();
+    }
+
 }
