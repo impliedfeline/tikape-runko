@@ -7,10 +7,10 @@
     </head>
 
     <body>
-        <h1>Tervetuloa KMS-Public tekstilaudalle</h1>
-        <h2>Laudat</h2>
+        <h1><span th:text="${lauta}">otsikko</span></h1>
+        <h2>Langat</h2>
         <ul>
-            <li th:each="lauta : ${laudat}">
+            <li th:each="lanka : ${langat}">
                 <a th:href="@{~/laudat/{id}(id=${lauta.nimi})}" 
                    th:text="${lauta.nimi}">Lauta</a>
                 <span th:text="${lauta.motd}">Paivan_viesti</span> 

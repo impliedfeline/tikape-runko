@@ -35,7 +35,7 @@ public class Main {
             HashMap map = new HashMap<>();
             List<Lanka> langat = lankaDao.findByLauta(req.params(":nimi"));
             map.put("langat", langat);
-            
+            map.put("lauta", req.params(":nimi"));
             return new ModelAndView(map, "lauta");
         }, new ThymeleafTemplateEngine());
 
