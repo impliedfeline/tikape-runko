@@ -17,7 +17,7 @@ import tikape.runko.domain.Lauta;
  *
  * @author Wagahai
  */
-public class LautaDao {
+public class LautaDao implements Dao<Lauta, String> {
 
     private Database database;
 
@@ -25,10 +25,11 @@ public class LautaDao {
         this.database = database;
     }
 
-    public Lauta haeLauta(String lauta_nimi) throws SQLException {
+    @Override
+    public Lauta findOne(String key) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta WHERE nimi = ?");
-        stmt.setObject(1, lauta_nimi);
+        stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();
@@ -46,7 +47,8 @@ public class LautaDao {
         return l;
     }
 
-    public List<Lauta> haeLaudat() throws SQLException {
+    @Override
+    public List<Lauta> findAll() throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta");
 
@@ -65,4 +67,10 @@ public class LautaDao {
 
         return laudat;
     }
+
+    @Override
+    public void delete(String key) throws SQLException {
+        throw new UnsupportedOperationException("Ei tarvita."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
