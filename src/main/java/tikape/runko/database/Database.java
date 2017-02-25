@@ -64,10 +64,8 @@ public class Database {
                 + ");");
                 
 //        Model for db tables/inserts
-//        lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Loli', 'Goemon saigoo :D');");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('3DPD', 'Kek');");
-//        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Homeros');");
 
         return lista;
     }
