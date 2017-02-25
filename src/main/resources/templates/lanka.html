@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>KMS-Public</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Tervetuloa KMS-Public tekstilaudalle</h1>
+        <h2>Laudat</h2>
+        <ul>
+            <li th:each="lauta : ${laudat}">
+                <a th:href="@{~/{id}(id=${lauta.nimi})}" 
+                   th:text="${lauta.nimi}">Lauta</a>
+                <span th:text="${lauta.motd}">Paivan_viesti</span> 
+
+            </li>
+        </ul>
+
+    </body>
+</html>
