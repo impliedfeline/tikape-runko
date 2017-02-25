@@ -14,7 +14,6 @@ public class Main {
         Database database = new Database("jdbc:sqlite:tekstilauta.db");
         database.init();
 
-        OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
         LautaDao lautaDao = new LautaDao(database);
         LankaDao lankaDao = new LankaDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
@@ -34,7 +33,7 @@ public class Main {
         
         get("/laudat/:nimi", (req, res) -> {
             HashMap map = new HashMap<>();
-            List<Lanka> langat = lankaDao.findAll(req.params(":nimi"));
+            List<Lanka> langat = lankaDao.findByLauta(req.params(":nimi"));
             map.put("langat", langat);
             
             return new ModelAndView(map, "lauta");

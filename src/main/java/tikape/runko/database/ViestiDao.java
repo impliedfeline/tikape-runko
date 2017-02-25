@@ -6,6 +6,7 @@
 package tikape.runko.database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +53,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         return v;
     }
     
-    public List<Viesti> findAll(String lanka_nimi) throws SQLException {
+    public List<Viesti> findByLanka(String lanka_nimi) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE lanka_id = ?");
         stmt.setObject(1, lanka_nimi);
@@ -116,4 +117,22 @@ public class ViestiDao implements Dao<Viesti, Integer> {
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void add(Viesti obj) throws SQLException {
+        Integer id = obj.getId();
+        String sisalto = obj.getSisalto();
+        String nimimerkki = obj.getNimimerkki();
+        Time aika = obj.getAika();
+        Integer lanka_id = obj.getLanka_id();
+        Integer vastaus = obj.getVastaus();
+        
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Viesti " +
+                            "(id, sisalto, nimimerkki, aika, lanka_id, vastaus) " +
+                            "VALUES (" + id + ", " + sisalto + ", " + nimimerkki + ", " +
+                                        aika + ", " + lanka_id + ", " + vastaus + ");");
+        stmt.execute();
+    }
+    
 }

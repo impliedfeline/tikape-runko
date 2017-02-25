@@ -50,7 +50,7 @@ public class LankaDao implements Dao<Lanka, Integer> {
         return l;
     }
 
-    public List<Lanka> findAll(String lauta_nimi) throws SQLException {
+    public List<Lanka> findByLauta(String lauta_nimi) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lanka WHERE lauta = ?");
         stmt.setObject(1, lauta_nimi);
@@ -79,29 +79,24 @@ public class LankaDao implements Dao<Lanka, Integer> {
 
     @Override
     public List<Lanka> findAll() throws SQLException {
-        Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lanka");
-
-        ResultSet rs = stmt.executeQuery();
-        List<Lanka> langat = new ArrayList<>();
-        while (rs.next()) {
-            Integer id = rs.getInt("id");
-            String otsikko = rs.getString("otsikko");
-            String lauta = rs.getString("lauta");
-
-            langat.add(new Lanka(id, otsikko, lauta));
-        }
-
-        rs.close();
-        stmt.close();
-        connection.close();
-
-        return langat;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void delete(Integer key) throws SQLException {
-        //Not here
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void add(Lanka obj) throws SQLException {
+        Integer id = obj.getId();
+        String otsikko = obj.getOtsikko();
+        String lauta = obj.getLauta();
+        
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Lanka " +
+                            "(id, otsikko, lauta) VALUES (" + id + ", " +
+                            otsikko + ", " + lauta + ");");
+        stmt.execute();
+    }
 }
