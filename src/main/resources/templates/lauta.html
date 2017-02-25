@@ -7,13 +7,13 @@
     </head>
 
     <body>
-        <h1>Tervetuloa KMS-Public tekstilaudalle</h1>
-        <h2>Laudat</h2>
+        <h1><span th:text="${lauta.nimi}">otsikko</span></h1>
+        <h2><span th:text="${lauta.motd}">motd</span></h2>
+        <h2>Langat</h2>
         <ul>
-            <li th:each="lauta : ${laudat}">
-                <a th:href="@{~/{id}(id=${lauta.nimi})}" 
-                   th:text="${lauta.nimi}">Lauta</a>
-                <span th:text="${lauta.motd}">Paivan_viesti</span> 
+            <li th:each="lanka : ${langat}">
+                <a th:href="@{~/{id}(id=${lanka.id})}" 
+                   th:text="${lanka.otsikko}">Lauta</a>
 
             </li>
         </ul>
