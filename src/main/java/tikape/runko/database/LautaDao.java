@@ -29,7 +29,7 @@ public class LautaDao {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta WHERE nimi = ?");
         stmt.setObject(1, lauta_nimi);
-        
+
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();
         if (!hasOne) {
@@ -37,12 +37,32 @@ public class LautaDao {
         }
         String nimi = rs.getString("nimi");
         String motd = rs.getString("motd");
-        
+
         Lauta l = new Lauta(nimi, motd);
         rs.close();
         stmt.close();
         connection.close();
-        
+
         return l;
+    }
+
+    public List<Lauta> haeLaudat() throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Lauta");
+
+        ResultSet rs = stmt.executeQuery();
+        List<Lauta> laudat = new ArrayList<>();
+        while (rs.next()) {
+            String nimi = rs.getString("nimi");
+            String motd = rs.getString("motd");
+
+            laudat.add(new Lauta(nimi, motd));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return laudat;
     }
 }
