@@ -84,7 +84,32 @@ public class ViestiDao implements Dao<Viesti, Integer> {
 
     @Override
     public List<Viesti> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti");
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        List<Viesti> viestit = new ArrayList<>();
+        while (rs.next()) {
+        Integer id = rs.getInt("id");
+            String sisalto = rs.getString("sisalto");
+            String nimimerkki = rs.getString("nimimerkki");
+            Time aika = rs.getTime("aika");
+            Integer lanka_id = rs.getInt("lanka_id");
+            Integer vastaus = rs.getInt("vastaus");
+
+            viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return viestit;
     }
 
     @Override
