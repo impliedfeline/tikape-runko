@@ -7,14 +7,11 @@
     </head>
 
     <body>
-        <h1><span th:text="${lauta.nimi}">otsikko</span></h1>
-        <h2><span th:text="${lauta.motd}">motd</span></h2>
-        <h2>Langat</h2>
+        <!--<h1><span th:text="${lanka.otsikko}">otsikko</span></h1>-->
+        <h2>Viestit</h2>
         <ul>
-            <li th:each="lanka : ${langat}">
-                <a th:href="@{~/langat/{id}(id=${lanka.id})}" 
-                   th:text="${lanka.otsikko}">Lauta</a>
-
+            <li th:each="viesti : ${viestit}">
+                <a th:text="${viesti.nimimerkki}">Lauta</a>
             </li>
         </ul>
 
