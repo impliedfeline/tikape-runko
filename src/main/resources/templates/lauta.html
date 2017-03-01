@@ -16,6 +16,13 @@
                    th:text="${lanka.otsikko}" >Lauta</a>
             </li>
         </ul>
+        <h3>Luo uusi lanka</h3>
+        <form method="POST">
+            <p>Otsikko: <input type="text" name="otsikko"/></p>
+            <p>Viesti: <input type="text" name="viesti"/></p>
+            <p>Nimimerkki: <input type="text" name="nimimerkki"/></p>
+            <input type="submit" value="Luo"/>
+        </form>
 
     </body>
 </html>

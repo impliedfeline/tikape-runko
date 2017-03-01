@@ -43,13 +43,26 @@ public class Main {
             map.put("lanka", lanka);
             return new ModelAndView(map, "lanka");
         }, new ThymeleafTemplateEngine());
+
         post("/langat/:id", (req, res) -> {
             int x = viestiDao.findAll().size() + 1;
-            String aika = "25243543"; //miten aika
-            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, 1, 2);
+            String aika = ""; //miten aika
+            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, Integer.parseInt(req.params(":id")), null); //mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + req.params(":id"));
             return "jes";
         });
+        post("/:nimi", (req, res) -> {
+            int x = lankaDao.findAll().size() + 1;
+            Lanka uusLanka = new Lanka(x, req.queryParams("otsikko"), req.params(":nimi"));
+            lankaDao.add(uusLanka);
+            String aika = ""; //miten aika
+            int y = viestiDao.findAll().size() + 1;
+            Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, x, null); //mites vastaaminen
+            viestiDao.add(uusviesti);
+            res.redirect("/langat/" + x);
+            return "jes";
+        });
+
     }
 }
