@@ -17,7 +17,7 @@ public class Main {
         LautaDao lautaDao = new LautaDao(database);
         LankaDao lankaDao = new LankaDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
-   
+
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Lauta> laudat = lautaDao.findAll();
@@ -25,7 +25,7 @@ public class Main {
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-        
+
         get("/:nimi", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Lanka> langat = lankaDao.findByLauta(req.params(":nimi"));
@@ -34,7 +34,7 @@ public class Main {
             map.put("lauta", lauta);
             return new ModelAndView(map, "lauta");
         }, new ThymeleafTemplateEngine());
-   
+
         get("/langat/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Viesti> viestit = viestiDao.findByLanka(Integer.parseInt(req.params(":id")));
@@ -43,6 +43,13 @@ public class Main {
             map.put("lanka", lanka);
             return new ModelAndView(map, "lanka");
         }, new ThymeleafTemplateEngine());
-
+        post("/langat/:id", (req, res) -> {
+            int x = viestiDao.findAll().size() + 1;
+            String aika = "25243543"; //miten aika
+            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, 1, 2);
+            viestiDao.add(uusviesti);
+            res.redirect("/langat/" + req.params(":id"));
+            return "jes";
+        });
     }
 }
