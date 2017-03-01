@@ -7,13 +7,17 @@
     </head>
 
     <body>
-        <!--<h1><span th:text="${lanka.otsikko}">otsikko</span></h1>-->
+        <h1>Lanka: <span th:text="${lanka.otsikko}">otsikko</span></h1>
         <h2>Viestit</h2>
-        <ul>
+        <ol>
             <li th:each="viesti : ${viestit}">
-                <a th:text="${viesti.nimimerkki}">Lauta</a>
+                <p><a th:text="${viesti.sisalto}">Viesti</a> T: <span th:text="${viesti.nimimerkki}">Nimimerkki</span></p>
             </li>
-        </ul>
-
+        </ol>
+        <form method="POST">
+            <p>Viesti: <input type="text" name="viesti"/></p>
+            <p>Nimimerkki: <input type="text" name="nimimerkki"/></p>
+            <input type="submit" value="Post"/>
+        </form>
     </body>
 </html>

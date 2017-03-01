@@ -7,16 +7,22 @@
     </head>
 
     <body>
-        <h1><span th:text="${lauta.nimi}">otsikko</span></h1>
+        <h1>Lauta: <span th:text="${lauta.nimi}">otsikko</span></h1>
         <h2><span th:text="${lauta.motd}">motd</span></h2>
         <h2>Langat</h2>
-        <ul>
+        <ul style="list-style-type: none">
             <li th:each="lanka : ${langat}">
                 <a th:href="@{~/langat/{id}(id=${lanka.id})}" 
-                   th:text="${lanka.otsikko}">Lauta</a>
-
+                   th:text="${lanka.otsikko}" >Lauta</a>
             </li>
         </ul>
+        <h3>Luo uusi lanka</h3>
+        <form method="POST">
+            <p>Otsikko: <input type="text" name="otsikko"/></p>
+            <p>Viesti: <input type="text" name="viesti"/></p>
+            <p>Nimimerkki: <input type="text" name="nimimerkki"/></p>
+            <input type="submit" value="Luo"/>
+        </form>
 
     </body>
 </html>

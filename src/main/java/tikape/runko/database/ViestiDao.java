@@ -66,7 +66,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer vastaus = null;
             try {
                 vastaus = rs.getInt("vastaus");
-            } catch (Exception e) { }
+            } catch (Exception e) {
+            }
 
             viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus));
         }
@@ -92,7 +93,11 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             String nimimerkki = rs.getString("nimimerkki");
             String aika = rs.getString("aika");
             Integer lanka_id = rs.getInt("lanka_id");
-            Integer vastaus = rs.getInt("vastaus");
+            Integer vastaus = null;
+            try {
+                vastaus = rs.getInt("vastaus");
+            } catch (Exception e) {
+            }
 
             viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus));
         }
@@ -122,9 +127,9 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         }
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("INSERT INTO Viesti "
-                + "(id, sisalto, nimimerkki, aika, lanka_id, vastaus) "
-                + "VALUES (" + id + ", " + sisalto + ", " + nimimerkki + ", "
-                + aika + ", " + lanka_id + ", " + vastaus + ");");
+                + "(id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) "
+                + "VALUES (" + id + ", '" + sisalto + "', '" + nimimerkki + "', '"
+                + aika + "', " + lanka_id + ", " + vastaus + ");");
         stmt.execute();
     }
 

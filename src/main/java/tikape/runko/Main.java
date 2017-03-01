@@ -17,7 +17,7 @@ public class Main {
         LautaDao lautaDao = new LautaDao(database);
         LankaDao lankaDao = new LankaDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
-   
+
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Lauta> laudat = lautaDao.findAll();
@@ -25,7 +25,7 @@ public class Main {
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-        
+
         get("/:nimi", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Lanka> langat = lankaDao.findByLauta(req.params(":nimi"));
@@ -34,14 +34,35 @@ public class Main {
             map.put("lauta", lauta);
             return new ModelAndView(map, "lauta");
         }, new ThymeleafTemplateEngine());
-   
+
         get("/langat/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             List<Viesti> viestit = viestiDao.findByLanka(Integer.parseInt(req.params(":id")));
             map.put("viestit", viestit);
-
+            Lanka lanka = lankaDao.findOne(Integer.parseInt(req.params(":id")));
+            map.put("lanka", lanka);
             return new ModelAndView(map, "lanka");
         }, new ThymeleafTemplateEngine());
+
+        post("/langat/:id", (req, res) -> {
+            int x = viestiDao.findAll().size() + 1;
+            String aika = ""; //miten aika
+            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, Integer.parseInt(req.params(":id")), null); //mites vastaaminen
+            viestiDao.add(uusviesti);
+            res.redirect("/langat/" + req.params(":id"));
+            return "jes";
+        });
+        post("/:nimi", (req, res) -> {
+            int x = lankaDao.findAll().size() + 1;
+            Lanka uusLanka = new Lanka(x, req.queryParams("otsikko"), req.params(":nimi"));
+            lankaDao.add(uusLanka);
+            String aika = ""; //miten aika
+            int y = viestiDao.findAll().size() + 1;
+            Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, x, null); //mites vastaaminen
+            viestiDao.add(uusviesti);
+            res.redirect("/langat/" + x);
+            return "jes";
+        });
 
     }
 }

@@ -67,7 +67,9 @@ public class Database {
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Loli', 'Goemon saigoo :D');");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('3DPD', 'Kek');");
         lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (1, 'Best Girl in 2017 Spring', 'Loli');");
-        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) VALUES (1, 'Best Girl in 2017 Spring', 'Loli Next Door', '2010-05-28T15:36:56.200', 1, null);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) VALUES (1, 'Oniichan on paras', 'Loli Next Door', '2010-05-28T15:36:56.200', 1, null);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) VALUES (2, 'Niin säki :)', 'Oniitan', '2010-05-28T15:36:57.200', 1, null);");
+
         return lista;
     }
 }
