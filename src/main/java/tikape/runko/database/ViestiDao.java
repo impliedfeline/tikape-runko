@@ -6,10 +6,10 @@
 package tikape.runko.database;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Viesti;
@@ -37,7 +37,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Integer id = rs.getInt("id");
         String sisalto = rs.getString("sisalto");
         String nimimerkki = rs.getString("nimimerkki");
-        String aika = rs.getString("aika");
+        Timestamp aika = new Timestamp(rs.getLong("aika"));
         Integer lanka_id = rs.getInt("lanka_id");
         Integer vastaus = rs.getInt("vastaus");
 
@@ -61,7 +61,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer id = rs.getInt("id");
             String sisalto = rs.getString("sisalto");
             String nimimerkki = rs.getString("nimimerkki");
-            String aika = rs.getString("aika");
+            Timestamp aika = new Timestamp(rs.getLong("aika"));
             Integer lanka_id = rs.getInt("lanka_id");
             Integer vastaus = null;
             try {
@@ -91,7 +91,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer id = rs.getInt("id");
             String sisalto = rs.getString("sisalto");
             String nimimerkki = rs.getString("nimimerkki");
-            String aika = rs.getString("aika");
+            Timestamp aika = new Timestamp(rs.getLong("aika"));
             Integer lanka_id = rs.getInt("lanka_id");
             Integer vastaus = null;
             try {
@@ -119,7 +119,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Integer id = obj.getId();
         String sisalto = obj.getSisalto();
         String nimimerkki = obj.getNimimerkki();
-        String aika = obj.getAika();
+        Long aika = obj.getAika().getTime();
         Integer lanka_id = obj.getLanka_id();
         Integer vastaus = obj.getVastaus();
         if (nimimerkki == null || nimimerkki.isEmpty()) {
@@ -128,8 +128,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("INSERT INTO Viesti "
                 + "(id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) "
-                + "VALUES (" + id + ", '" + sisalto + "', '" + nimimerkki + "', '"
-                + aika + "', " + lanka_id + ", " + vastaus + ");");
+                + "VALUES (" + id + ", '" + sisalto + "', '" + nimimerkki + "', "
+                + aika + ", " + lanka_id + ", " + vastaus + ");");
         stmt.execute();
     }
 

@@ -16,11 +16,15 @@ public class Viesti {
     private Integer id;
     private String sisalto;
     private String nimimerkki;
-    private String aika;
+    private Timestamp aika;
     private Integer lanka_id;
     private Integer vastaus;
 
-    public Viesti(Integer id, String sisalto, String nimimerkki, String aika, Integer lanka_id, Integer vastaus) {
+    public Viesti(Integer id, String sisalto, String nimimerkki, Timestamp aika, Integer lanka_id, Integer vastaus) {
+        if (nimimerkki.length() > 20)
+            nimimerkki = nimimerkki.substring(0, 20);
+        if (sisalto.length() > 1000)
+            sisalto = sisalto.substring(0, 1000);
         this.id = id;
         this.sisalto = sisalto;
         this.nimimerkki = nimimerkki;
@@ -53,11 +57,11 @@ public class Viesti {
         this.nimimerkki = nimimerkki;
     }
 
-    public String getAika() {
+    public Timestamp getAika() {
         return aika;
     }
 
-    public void setAika(String aika) {
+    public void setAika(Timestamp aika) {
         this.aika = aika;
     }
 
@@ -73,7 +77,7 @@ public class Viesti {
         return vastaus;
     }
 
-    public void setvastaus(Integer vastaus) {
+    public void setVastaus(Integer vastaus) {
         this.vastaus = vastaus;
     }
 }

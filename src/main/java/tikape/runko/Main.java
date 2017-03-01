@@ -1,5 +1,6 @@
 package tikape.runko;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import spark.ModelAndView;
@@ -46,8 +47,9 @@ public class Main {
 
         post("/langat/:id", (req, res) -> {
             int x = viestiDao.findAll().size() + 1;
-            String aika = ""; //miten aika
-            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, Integer.parseInt(req.params(":id")), null); //mites vastaaminen
+            Timestamp aika = new Timestamp(System.currentTimeMillis());
+            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"),
+                    aika, Integer.parseInt(req.params(":id")), null); // mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + req.params(":id"));
             return "jes";
@@ -56,9 +58,10 @@ public class Main {
             int x = lankaDao.findAll().size() + 1;
             Lanka uusLanka = new Lanka(x, req.queryParams("otsikko"), req.params(":nimi"));
             lankaDao.add(uusLanka);
-            String aika = ""; //miten aika
             int y = viestiDao.findAll().size() + 1;
-            Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, x, null); //mites vastaaminen
+            Timestamp aika = new Timestamp(System.currentTimeMillis());
+            Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"),
+                    aika, x, null); //mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + x);
             return "jes";
