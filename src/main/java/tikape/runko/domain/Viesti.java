@@ -5,8 +5,6 @@
  */
 package tikape.runko.domain;
 
-import java.sql.Timestamp;
-
 /**
  *
  * @author Wagahai
@@ -21,6 +19,10 @@ public class Viesti {
     private Integer vastaus;
 
     public Viesti(Integer id, String sisalto, String nimimerkki, Long aika, Integer lanka_id, Integer vastaus) {
+        if (nimimerkki.length() > 20)
+            nimimerkki = nimimerkki.substring(0, 20);
+        if (sisalto.length() > 1000)
+            sisalto = sisalto.substring(0, 1000);
         this.id = id;
         this.sisalto = sisalto;
         this.nimimerkki = nimimerkki;

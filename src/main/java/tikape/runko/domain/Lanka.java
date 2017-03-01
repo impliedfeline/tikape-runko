@@ -16,6 +16,8 @@ public class Lanka {
     private String lauta;
     
     public Lanka(Integer id, String otsikko, String lauta) {
+        if (otsikko.length() > 50)
+            otsikko = otsikko.substring(0, 50);
         this.id = id;
         this.otsikko = otsikko;
         this.lauta = lauta;

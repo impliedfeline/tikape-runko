@@ -8,7 +8,7 @@
 
     <body>
         <h1>Lauta: <span th:text="${lauta.nimi}">otsikko</span></h1>
-        <h2><span th:text="${lauta.motd}">motd</span></h2>
+        <h2>"<span th:text="${lauta.motd}">motd</span>"</h2>
         <h2>Langat</h2>
         <ul style="list-style-type: none">
             <li th:each="lanka : ${langat}">
