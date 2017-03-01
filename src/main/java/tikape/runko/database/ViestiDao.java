@@ -6,6 +6,7 @@
 package tikape.runko.database;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Integer id = rs.getInt("id");
         String sisalto = rs.getString("sisalto");
         String nimimerkki = rs.getString("nimimerkki");
-        Long aika = rs.getLong("aika");
+        Timestamp aika = new Timestamp(rs.getLong("aika"));
         Integer lanka_id = rs.getInt("lanka_id");
         Integer vastaus = rs.getInt("vastaus");
 
@@ -60,7 +61,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer id = rs.getInt("id");
             String sisalto = rs.getString("sisalto");
             String nimimerkki = rs.getString("nimimerkki");
-            Long aika = rs.getLong("aika");
+            Timestamp aika = new Timestamp(rs.getLong("aika"));
             Integer lanka_id = rs.getInt("lanka_id");
             Integer vastaus = null;
             try {
@@ -90,7 +91,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer id = rs.getInt("id");
             String sisalto = rs.getString("sisalto");
             String nimimerkki = rs.getString("nimimerkki");
-            Long aika = rs.getLong("aika");
+            Timestamp aika = new Timestamp(rs.getLong("aika"));
             Integer lanka_id = rs.getInt("lanka_id");
             Integer vastaus = null;
             try {
@@ -118,7 +119,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Integer id = obj.getId();
         String sisalto = obj.getSisalto();
         String nimimerkki = obj.getNimimerkki();
-        Long aika = obj.getAika();
+        Long aika = obj.getAika().getTime();
         Integer lanka_id = obj.getLanka_id();
         Integer vastaus = obj.getVastaus();
         if (nimimerkki == null || nimimerkki.isEmpty()) {

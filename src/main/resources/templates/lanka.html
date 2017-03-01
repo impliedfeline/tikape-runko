@@ -9,11 +9,16 @@
     <body>
         <h1>Lanka: <span th:text="${lanka.otsikko}">otsikko</span></h1>
         <h2>Viestit</h2>
-        <ol>
+        <ul>
             <li th:each="viesti : ${viestit}">
-                <p><a th:text="${viesti.sisalto}">Viesti</a> T: <span th:text="${viesti.nimimerkki}">Nimimerkki</span></p>
+                <p>
+                    <span th:text="${viesti.nimimerkki}">Nimimerkki</span>
+                    <span th:text="${viesti.aika}">Aika</span>
+                    No. <span th:text="${viesti.id}">ID</span>
+                </p>
+                <p><span th:text="${viesti.sisalto}">Sisalto</span></p>
             </li>
-        </ol>
+        </ul>
         <form method="POST">
             <p><textarea name="viesti" rows="10" cols="50">Viestisi</textarea></p>
             <p>Nimimerkki: <input type="text" name="nimimerkki"/></p>

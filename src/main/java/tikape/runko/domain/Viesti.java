@@ -5,6 +5,8 @@
  */
 package tikape.runko.domain;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Wagahai
@@ -14,11 +16,11 @@ public class Viesti {
     private Integer id;
     private String sisalto;
     private String nimimerkki;
-    private Long aika;
+    private Timestamp aika;
     private Integer lanka_id;
     private Integer vastaus;
 
-    public Viesti(Integer id, String sisalto, String nimimerkki, Long aika, Integer lanka_id, Integer vastaus) {
+    public Viesti(Integer id, String sisalto, String nimimerkki, Timestamp aika, Integer lanka_id, Integer vastaus) {
         if (nimimerkki.length() > 20)
             nimimerkki = nimimerkki.substring(0, 20);
         if (sisalto.length() > 1000)
@@ -55,11 +57,11 @@ public class Viesti {
         this.nimimerkki = nimimerkki;
     }
 
-    public Long getAika() {
+    public Timestamp getAika() {
         return aika;
     }
 
-    public void setAika(Long aika) {
+    public void setAika(Timestamp aika) {
         this.aika = aika;
     }
 
@@ -75,7 +77,7 @@ public class Viesti {
         return vastaus;
     }
 
-    public void setvastaus(Integer vastaus) {
+    public void setVastaus(Integer vastaus) {
         this.vastaus = vastaus;
     }
 }

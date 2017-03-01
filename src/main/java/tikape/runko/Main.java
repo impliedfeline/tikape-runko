@@ -1,5 +1,6 @@
 package tikape.runko;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import spark.ModelAndView;
@@ -46,8 +47,9 @@ public class Main {
 
         post("/langat/:id", (req, res) -> {
             int x = viestiDao.findAll().size() + 1;
+            Timestamp aika = new Timestamp(System.currentTimeMillis());
             Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"),
-                    System.currentTimeMillis(), Integer.parseInt(req.params(":id")), null); // mites vastaaminen
+                    aika, Integer.parseInt(req.params(":id")), null); // mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + req.params(":id"));
             return "jes";
@@ -57,8 +59,9 @@ public class Main {
             Lanka uusLanka = new Lanka(x, req.queryParams("otsikko"), req.params(":nimi"));
             lankaDao.add(uusLanka);
             int y = viestiDao.findAll().size() + 1;
+            Timestamp aika = new Timestamp(System.currentTimeMillis());
             Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"),
-                    System.currentTimeMillis(), x, null); //mites vastaaminen
+                    aika, x, null); //mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + x);
             return "jes";
