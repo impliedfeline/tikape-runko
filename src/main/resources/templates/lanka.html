@@ -7,13 +7,13 @@
     </head>
 
     <body>
-        <!--<h1><span th:text="${lanka.otsikko}">otsikko</span></h1>-->
+        <h1>Lanka: <span th:text="${lanka.otsikko}">otsikko</span></h1>
         <h2>Viestit</h2>
-        <ul>
+        <ol>
             <li th:each="viesti : ${viestit}">
-                <a th:text="${viesti.nimimerkki}">Lauta</a>
+                <p><a th:text="${viesti.sisalto}">Viesti</a> T: <span th:text="${viesti.nimimerkki}">Nimimerkki</span></p>
             </li>
-        </ul>
+        </ol>
 
     </body>
 </html>

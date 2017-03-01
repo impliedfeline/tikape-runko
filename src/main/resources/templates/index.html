@@ -9,7 +9,7 @@
     <body>
         <h1>Tervetuloa KMS-Public tekstilaudalle</h1>
         <h2>Laudat</h2>
-        <ul>
+        <ul style="list-style-type: none">
             <li th:each="lauta : ${laudat}">
                 <a th:href="@{~/{id}(id=${lauta.nimi})}" 
                    th:text="${lauta.nimi}">Lauta</a>
@@ -17,6 +17,5 @@
 
             </li>
         </ul>
-
     </body>
 </html>

@@ -39,7 +39,8 @@ public class Main {
             HashMap map = new HashMap<>();
             List<Viesti> viestit = viestiDao.findByLanka(Integer.parseInt(req.params(":id")));
             map.put("viestit", viestit);
-
+            Lanka lanka = lankaDao.findOne(Integer.parseInt(req.params(":id")));
+            map.put("lanka", lanka);
             return new ModelAndView(map, "lanka");
         }, new ThymeleafTemplateEngine());
 
