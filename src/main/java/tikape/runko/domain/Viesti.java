@@ -16,11 +16,11 @@ public class Viesti {
     private Integer id;
     private String sisalto;
     private String nimimerkki;
-    private String aika;
+    private Long aika;
     private Integer lanka_id;
     private Integer vastaus;
 
-    public Viesti(Integer id, String sisalto, String nimimerkki, String aika, Integer lanka_id, Integer vastaus) {
+    public Viesti(Integer id, String sisalto, String nimimerkki, Long aika, Integer lanka_id, Integer vastaus) {
         this.id = id;
         this.sisalto = sisalto;
         this.nimimerkki = nimimerkki;
@@ -53,11 +53,11 @@ public class Viesti {
         this.nimimerkki = nimimerkki;
     }
 
-    public String getAika() {
+    public Long getAika() {
         return aika;
     }
 
-    public void setAika(String aika) {
+    public void setAika(Long aika) {
         this.aika = aika;
     }
 

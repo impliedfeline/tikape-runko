@@ -47,7 +47,8 @@ public class Main {
         post("/langat/:id", (req, res) -> {
             int x = viestiDao.findAll().size() + 1;
             String aika = ""; //miten aika
-            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, Integer.parseInt(req.params(":id")), null); //mites vastaaminen
+            Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"),
+                    System.currentTimeMillis(), Integer.parseInt(req.params(":id")), null); // mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + req.params(":id"));
             return "jes";
@@ -58,7 +59,8 @@ public class Main {
             lankaDao.add(uusLanka);
             String aika = ""; //miten aika
             int y = viestiDao.findAll().size() + 1;
-            Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"), aika, x, null); //mites vastaaminen
+            Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"),
+                    System.currentTimeMillis(), x, null); //mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + x);
             return "jes";
