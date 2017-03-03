@@ -23,7 +23,6 @@ public class Main {
             HashMap map = new HashMap<>();
             List<Lauta> laudat = lautaDao.findAll();
             map.put("laudat", laudat);
-
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
 
@@ -52,11 +51,16 @@ public class Main {
                     aika, Integer.parseInt(req.params(":id")), null); // mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + req.params(":id"));
-            return "jes";
+            return "ok";
         });
         post("/:nimi", (req, res) -> {
             int x = lankaDao.findAll().size() + 1;
-            Lanka uusLanka = new Lanka(x, req.queryParams("otsikko"), req.params(":nimi"));
+            String otsikko = req.queryParams("otsikko");
+            if(otsikko.isEmpty()) {
+                res.redirect("/" + req.params(":nimi"));
+                return "ok";
+            }
+            Lanka uusLanka = new Lanka(x, otsikko, req.params(":nimi"), 1);
             lankaDao.add(uusLanka);
             int y = viestiDao.findAll().size() + 1;
             Timestamp aika = new Timestamp(System.currentTimeMillis());
@@ -64,8 +68,7 @@ public class Main {
                     aika, x, null); //mites vastaaminen
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + x);
-            return "jes";
+            return "ok";
         });
-
     }
 }

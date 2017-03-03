@@ -13,10 +13,20 @@ public class Lauta {
 
     private String nimi;
     private String motd;
+    private Integer maara;
 
-    public Lauta(String nimi, String motd) {
+    public Lauta(String nimi, String motd, Integer maara) {
         this.nimi = nimi;
         this.motd = motd;
+        this.maara = maara;
+    }
+
+    public Integer getMaara() {
+        return maara;
+    }
+
+    public void setMaara(Integer maara) {
+        this.maara = maara;
     }
 
     public String getNimi() {

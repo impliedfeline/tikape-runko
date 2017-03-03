@@ -38,8 +38,9 @@ public class LautaDao implements Dao<Lauta, String> {
         }
         String nimi = rs.getString("nimi");
         String motd = rs.getString("motd");
-
-        Lauta l = new Lauta(nimi, motd);
+        Integer maara = count(nimi, connection);
+        
+        Lauta l = new Lauta(nimi, motd, maara);
         rs.close();
         stmt.close();
         connection.close();
@@ -57,8 +58,9 @@ public class LautaDao implements Dao<Lauta, String> {
         while (rs.next()) {
             String nimi = rs.getString("nimi");
             String motd = rs.getString("motd");
-
-            laudat.add(new Lauta(nimi, motd));
+            Integer maara = count(nimi, connection);
+            
+            laudat.add(new Lauta(nimi, motd, maara));
         }
 
         rs.close();
@@ -83,6 +85,15 @@ public class LautaDao implements Dao<Lauta, String> {
                             "(nimi, motd) " +
                             "VALUES (" + nimi + ", " + motd + ");");
         stmt.execute();
+    }
+    
+    private Integer count(String nimi, Connection connection) throws SQLException {
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS maara FROM Viesti v "
+                    + "INNER JOIN Lanka l ON v.lanka_id = l.id INNER JOIN Lauta la ON l.lauta = la.nimi WHERE la.nimi = ?;");
+            stmt.setObject(1, nimi);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("maara");
     }
 
 }

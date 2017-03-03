@@ -40,9 +40,9 @@ public class LankaDao implements Dao<Lanka, Integer> {
         Integer id = rs.getInt("id");
         String otsikko = rs.getString("otsikko");
         String lauta = rs.getString("lauta");
-        
+        Integer maara = count(id, connection);
 
-        Lanka l = new Lanka(id, otsikko, lauta);
+        Lanka l = new Lanka(id, otsikko, lauta, maara);
         rs.close();
         stmt.close();
         connection.close();
@@ -62,8 +62,9 @@ public class LankaDao implements Dao<Lanka, Integer> {
             Integer id = rs.getInt("id");
             String otsikko = rs.getString("otsikko");
             String lauta = rs.getString("lauta");
+            Integer maara = count(id, connection);
 
-            langat.add(new Lanka(id, otsikko, lauta));
+            langat.add(new Lanka(id, otsikko, lauta, maara));
         }
 
         rs.close();
@@ -86,8 +87,9 @@ public class LankaDao implements Dao<Lanka, Integer> {
             Integer id = rs.getInt("id");
             String otsikko = rs.getString("otsikko");
             String lauta = rs.getString("lauta");
+            Integer maara = count(id, connection);
 
-            langat.add(new Lanka(id, otsikko, lauta));
+            langat.add(new Lanka(id, otsikko, lauta, maara));
         }
 
         rs.close();
@@ -113,5 +115,15 @@ public class LankaDao implements Dao<Lanka, Integer> {
                             "(id, otsikko, lauta) VALUES (" + id + ", '" +
                             otsikko + "', '" + lauta + "');");
         stmt.execute();
+    }
+    
+    private Integer count(Integer id, Connection connection) throws SQLException {
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS maara FROM Viesti v "
+                    + "INNER JOIN Lanka l ON v.lanka = l.id WHERE l.id = ?;");
+            stmt.setObject(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("maara");
+            
     }
 }
