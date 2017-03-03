@@ -22,6 +22,7 @@ public class Lanka {
         this.id = id;
         this.otsikko = otsikko;
         this.lauta = lauta;
+        this.maara = maara;
     }
 
     public Integer getMaara() {

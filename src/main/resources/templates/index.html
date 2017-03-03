@@ -13,8 +13,7 @@
             <li th:each="lauta : ${laudat}">
                 <a th:href="@{~/{id}(id=${lauta.nimi})}" 
                    th:text="${lauta.nimi}">Lauta</a>
-                <span th:text="${lauta.motd}">Paivan_viesti</span> 
-
+                <span th:text="${lauta.maara}">Viestien maara</span> 
             </li>
         </ul>
     </body>

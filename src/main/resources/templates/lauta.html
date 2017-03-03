@@ -14,6 +14,7 @@
             <li th:each="lanka : ${langat}">
                 <a th:href="@{~/langat/{id}(id=${lanka.id})}" 
                    th:text="${lanka.otsikko}" >Lauta</a>
+                <span th:text="${lanka.maara}">Viestien maara</span>
             </li>
         </ul>
         <h3>Luo uusi lanka</h3>

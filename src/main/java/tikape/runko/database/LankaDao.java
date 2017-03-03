@@ -119,7 +119,7 @@ public class LankaDao implements Dao<Lanka, Integer> {
     
     private Integer count(Integer id, Connection connection) throws SQLException {
             PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS maara FROM Viesti v "
-                    + "INNER JOIN Lanka l ON v.lanka = l.id WHERE l.id = ?;");
+                    + "INNER JOIN Lanka l ON v.lanka_id = l.id WHERE l.id = ?;");
             stmt.setObject(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.next();
