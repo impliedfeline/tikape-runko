@@ -10,19 +10,30 @@ package tikape.runko.domain;
  * @author juicyp
  */
 public class Lanka {
-    
+
     private Integer id;
     private String otsikko;
     private String lauta;
     private Integer maara;
-    
-    public Lanka(Integer id, String otsikko, String lauta, Integer maara) {
-        if (otsikko.length() > 50)
+    private Viesti viimeisin;
+
+    public Viesti getViimeisin() {
+        return viimeisin;
+    }
+
+    public void setViimeisin(Viesti viimeisin) {
+        this.viimeisin = viimeisin;
+    }
+
+    public Lanka(Integer id, String otsikko, String lauta, Integer maara, Viesti viimeisin) {
+        if (otsikko.length() > 50) {
             otsikko = otsikko.substring(0, 50);
+        }
         this.id = id;
         this.otsikko = otsikko;
         this.lauta = lauta;
         this.maara = maara;
+        this.viimeisin = viimeisin;
     }
 
     public Integer getMaara() {
