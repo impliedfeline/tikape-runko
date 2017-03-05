@@ -1,4 +1,2 @@
-# tikape-runko
-
-Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
-
+#Tekstilauta
+Tietokantojen perusteet -kurssilla luotu tekstilauta web-sovellus
