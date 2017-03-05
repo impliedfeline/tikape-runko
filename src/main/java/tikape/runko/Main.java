@@ -48,7 +48,7 @@ public class Main {
             int x = viestiDao.findAll().size() + 1;
             Timestamp aika = new Timestamp(System.currentTimeMillis());
             Viesti uusviesti = new Viesti(x, req.queryParams("viesti"), req.queryParams("nimimerkki"),
-                    aika, Integer.parseInt(req.params(":id")), null); // mites vastaaminen
+                    aika, Integer.parseInt(req.params(":id")));
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + req.params(":id"));
             return "ok";
@@ -65,7 +65,7 @@ public class Main {
             int y = viestiDao.findAll().size() + 1;
             Timestamp aika = new Timestamp(System.currentTimeMillis());
             Viesti uusviesti = new Viesti(y, req.queryParams("viesti"), req.queryParams("nimimerkki"),
-                    aika, x, null); //mites vastaaminen
+                    aika, x);
             viestiDao.add(uusviesti);
             res.redirect("/langat/" + x);
             return "ok";

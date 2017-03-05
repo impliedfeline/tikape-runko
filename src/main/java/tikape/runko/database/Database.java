@@ -58,17 +58,23 @@ public class Database {
                 + "nimimerkki text,\n"
                 + "aika integer NOT NULL,\n"
                 + "lanka_id integer NOT NULL,\n"
-                + "vastaus_id integer,\n"
-                + "FOREIGN KEY(lanka_id) REFERENCES Lanka(id),\n"
-                + "FOREIGN KEY(vastaus_id) REFERENCES Viesti(id)\n"
+                + "FOREIGN KEY(lanka_id) REFERENCES Lanka(id)\n"
                 + ");");
 
 //        Model for db tables/inserts
-        lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Loli', 'Goemon saigoo :D');");
-        lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('3DPD', 'Kek');");
-        lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (1, 'Best Girl in 2017 Spring', 'Loli');");
-        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) VALUES (1, 'Oniichan on paras', 'Loli Next Door', 1, 1, null);");
-        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) VALUES (2, 'Niin säki :)', 'Oniitan', 2, 1, null);");
+        lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Ohjelmointi', 'Netbeans on paras');");
+        lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Japani', 'Pls vastatkaa');");
+        lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Sekalainen', 'Trump pelasti maailman');");
+        lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (1, 'Paras ohjelmointiympäristö?', 'Ohjelmointi');");
+        lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (2, 'Eka Japaninreissu', 'Japani');");
+        lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (3, 'Terkut tulevaisuudesta', 'Sekalainen');");
+        lista.add("INSERT INTO Lanka (id, otsikko, lauta) VALUES (4, 'Onks ramen hyvää', 'Japani');");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id) VALUES (1, 'Netbeans on paras', 'Fuksi', 1488688434112, 1);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id) VALUES (2, 'Kek', 'Koodimestari', 1488699444121, 1);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id) VALUES (3, 'Mihin kannattais mennä?', 'I love nippon', 1488699774232, 2);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id) VALUES (4, 'Trump pelasti maailman', 'Trump', 11188888443124, 3);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id) VALUES (5, 'Niin, onko se?', 'Ramenmies', 1488699884253, 4);");
+        lista.add("INSERT INTO Viesti (id, sisalto, nimimerkki, aika, lanka_id) VALUES (6, 'Pls vastatkaa', 'Ramenmies', 1488699994356, 4);");
 
         return lista;
     }

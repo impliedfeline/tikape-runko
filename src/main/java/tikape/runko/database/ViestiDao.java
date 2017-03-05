@@ -39,9 +39,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         String nimimerkki = rs.getString("nimimerkki");
         Timestamp aika = new Timestamp(rs.getLong("aika"));
         Integer lanka_id = rs.getInt("lanka_id");
-        Integer vastaus = rs.getInt("vastaus");
 
-        Viesti v = new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus);
+        Viesti v = new Viesti(id, sisalto, nimimerkki, aika, lanka_id);
         rs.close();
         stmt.close();
         connection.close();
@@ -63,13 +62,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             String nimimerkki = rs.getString("nimimerkki");
             Timestamp aika = new Timestamp(rs.getLong("aika"));
             Integer lanka_id = rs.getInt("lanka_id");
-            Integer vastaus = null;
-            try {
-                vastaus = rs.getInt("vastaus");
-            } catch (Exception e) {
-            }
 
-            viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus));
+            viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id));
         }
 
         rs.close();
@@ -93,13 +87,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             String nimimerkki = rs.getString("nimimerkki");
             Timestamp aika = new Timestamp(rs.getLong("aika"));
             Integer lanka_id = rs.getInt("lanka_id");
-            Integer vastaus = null;
-            try {
-                vastaus = rs.getInt("vastaus");
-            } catch (Exception e) {
-            }
 
-            viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id, vastaus));
+            viestit.add(new Viesti(id, sisalto, nimimerkki, aika, lanka_id));
         }
 
         rs.close();
@@ -121,15 +110,14 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         String nimimerkki = obj.getNimimerkki();
         Long aika = obj.getAika().getTime();
         Integer lanka_id = obj.getLanka_id();
-        Integer vastaus = obj.getVastaus();
         if (nimimerkki == null || nimimerkki.isEmpty()) {
             nimimerkki = "Nyymi";
         }
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("INSERT INTO Viesti "
-                + "(id, sisalto, nimimerkki, aika, lanka_id, vastaus_id) "
+                + "(id, sisalto, nimimerkki, aika, lanka_id) "
                 + "VALUES (" + id + ", '" + sisalto + "', '" + nimimerkki + "', "
-                + aika + ", " + lanka_id + ", " + vastaus + ");");
+                + aika + ", " + lanka_id + ");");
         stmt.execute();
     }
 
