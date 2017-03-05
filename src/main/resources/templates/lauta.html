@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <title>KMS-Public</title>
+        <title>Neo Turf Birdie</title>
         <meta charset="utf-8" />
     </head>
 
@@ -12,11 +12,11 @@
         <h2>Langat</h2>
         <ul style="list-style-type: none">
             <li th:each="lanka : ${langat}">
-                <a th:href="@{~/langat/{id}(id=${lanka.id})}" 
-                   th:text="${lanka.otsikko}" >Lauta</a>
-                <span th:text="${lanka.maara}">Viestien maara</span>
-                <span th:text="${lanka.viimeisin.sisalto}">Viimeisin</span>
-                <span th:text="${lanka.viimeisin.aika}">Aika</span>
+                <p><a th:href="@{~/langat/{id}(id=${lanka.id})}" 
+                      th:text="${lanka.otsikko}" >Lauta</a></p>
+                <p>Viestien maara: <span th:text="${lanka.maara}">Viestien maara</span></p>
+                <p>Viimeisin viesti: <span th:text="${lanka.viimeisin.sisalto}">Viimeisin</span></p>
+                <p><span th:text="${lanka.viimeisin.aika}">Aika</span></p>
             </li>
         </ul>
         <h3>Luo uusi lanka</h3>
