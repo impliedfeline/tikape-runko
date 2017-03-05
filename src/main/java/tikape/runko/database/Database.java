@@ -61,7 +61,6 @@ public class Database {
                 + "FOREIGN KEY(lanka_id) REFERENCES Lanka(id)\n"
                 + ");");
 
-//        Model for db tables/inserts
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Ohjelmointi', 'Netbeans on paras');");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Japani', 'Pls vastatkaa');");
         lista.add("INSERT INTO Lauta (nimi, motd) VALUES ('Sekalainen', 'Trump pelasti maailman');");

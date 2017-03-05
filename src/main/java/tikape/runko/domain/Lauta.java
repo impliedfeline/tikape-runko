@@ -14,11 +14,21 @@ public class Lauta {
     private String nimi;
     private String motd;
     private Integer maara;
+    private Viesti viimeisin;
 
-    public Lauta(String nimi, String motd, Integer maara) {
+    public Lauta(String nimi, String motd, Integer maara, Viesti viimeisin) {
         this.nimi = nimi;
         this.motd = motd;
         this.maara = maara;
+        this.viimeisin = viimeisin;
+    }
+
+    public Viesti getViimeisin() {
+        return viimeisin;
+    }
+
+    public void setViimeisin(Viesti viimeisin) {
+        this.viimeisin = viimeisin;
     }
 
     public Integer getMaara() {

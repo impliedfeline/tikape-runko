@@ -60,7 +60,7 @@ public class Main {
                 res.redirect("/" + req.params(":nimi"));
                 return "ok";
             }
-            Lanka uusLanka = new Lanka(x, otsikko, req.params(":nimi"), 1);
+            Lanka uusLanka = new Lanka(x, otsikko, req.params(":nimi"), 1, null);
             lankaDao.add(uusLanka);
             int y = viestiDao.findAll().size() + 1;
             Timestamp aika = new Timestamp(System.currentTimeMillis());

@@ -14,6 +14,8 @@
                 <a th:href="@{~/{id}(id=${lauta.nimi})}" 
                    th:text="${lauta.nimi}">Lauta</a>
                 <span th:text="${lauta.maara}">Viestien maara</span> 
+                <span th:text="${lauta.viimeisin.sisalto}">Viesti</span>
+                <span th:text="${lauta.viimeisin.aika}">Aika</span>
             </li>
         </ul>
     </body>
